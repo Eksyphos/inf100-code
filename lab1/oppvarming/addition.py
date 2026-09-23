@@ -1,0 +1,5 @@
+print ("Oppgi et tall:")
+a = int(input())
+print ("Oppgi et tall til:")
+b = int(input())
+print ("Summen av  tallene er ",a+b)

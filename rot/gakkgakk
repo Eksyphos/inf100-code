@@ -1,0 +1,6 @@
+characters = [
+    ["Minni","Mikke","Langbein"],
+    ["Donald","Dolly","Onkel Skrue"]
+]
+x= characters[1][2]
+print(x)

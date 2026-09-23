@@ -1,0 +1,7 @@
+print("Hvor mange er dere på laget?")
+medlemmer = int(input())
+print("Hvor mange Twist er det i posen dere vant?")
+twist = int(input())
+porsjon = (twist//medlemmer)
+rest = (twist-(medlemmer*porsjon))
+print ("Det blir", porsjon,"twist til hver, og det blir",rest,"twist til overs.")
