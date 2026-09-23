@@ -1,0 +1,10 @@
+{
+  "navn": "Bybjørnen",
+  "sted": "Bergen sentrum",
+  "observasjoner": 3,
+  "farlig": false,
+  "kjennetegn": [
+    "regnjakke",
+    "spiser boller"
+  ]
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nb">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+  </head>
+  <body>
+    <h1>Index av Inf105 nettsider som har blitt jobbet med</h1>
+    <ul>
+    <li><p><a href="http://h26-10.inf105.org">About</a></p>
+    <li><p><a href="http://h26-14.inf105.org">Welcome to the swaggiest website of them all</a></p>
+    <li><p><a href="http://h26-16.inf105.org">Lasses Dykkelogg</a></p>
+    <li><p><a href="http://h26-20.inf105.org">Velkommen!</a></p>
+    <li><p><a href="http://h26-22.inf105.org">FRANS</a></p>
+    <li><p><a href="http://h26-26.inf105.org">403 Forbidden</a></p>
+    <li><p><a href="http://h26-28.inf105.org">403 Forbidden</a></p>
+    <li><p><a href="http://h26-30.inf105.org">My website</a></p>
+    <li><p><a href="http://h26-31.inf105.org">CrimeDB</a></p>
+    <li><p><a href="http://h26-41.inf105.org">Manchester United</a></p>
+    <li><p><a href="http://h26-42.inf105.org">Stefan Erichsen</a></p>
+    <li><p><a href="http://h26-44.inf105.org">Document</a></p>
+    <li><p><a href="http://h26-46.inf105.org">Nettside</a></p>
+    <li><p><a href="http://h26-47.inf105.org">Oleander/Home</a></p>
+    <li><p><a href="http://h26-48.inf105.org">Codepage</a></p>
+    <li><p><a href="http://h26-49.inf105.org">Ole Kristian Vange Helle – INF105</a></p>
+    <li><p><a href="http://h26-50.inf105.org">My interests</a></p>
+    <li><p><a href="http://h26-51.inf105.org">Hei hei fra stian!</a></p>
+    <li><p><a href="http://h26-60.inf105.org">calcium</a></p>
+    <li><p><a href="http://h26-61.inf105.org"> nettsidenavn </a></p>
+    <li><p><a href="http://h26-62.inf105.org">Title</a></p>
+    <li><p><a href="http://h26-66.inf105.org">Hei Selina!</a></p>
+    <li><p><a href="http://h26-67.inf105.org">WOW!!! Egen Nettside</a></p>
+    <li><p><a href="http://h26-68.inf105.org">Carl August</a></p>
+    <li><p><a href="http://h26-70.inf105.org">Vinens Verden</a></p>
+    <li><p><a href="http://h26-78.inf105.org">Yoooooo!!!</a></p>
+    <li><p><a href="http://h26-80.inf105.org">BIG FIRE</a></p>
+    <li><p><a href="http://h26-81.inf105.org">soma</a></p>
+    <li><p><a href="http://h26-84.inf105.org">Hei hei hei</a></p>
+    <li><p><a href="http://h26-88.inf105.org">Document title</a></p>
+    <li><p><a href="http://h26-90.inf105.org">MTG Deckbuilding</a></p>
+    <li><p><a href="http://h26-92.inf105.org">Stompus's portfolio</a></p>
+    <li><p><a href="http://h26-94.inf105.org">MUSIC POOL</a></p>
+    <li><p><a href="http://h26-95.inf105.org">Spirit Realm Gate</a></p>
+    <li><p><a href="http://h26-98.inf105.org">Index</a></p>
+    <li><p><a href="http://h26-100.inf105.org">Yo</a></p>
+    <li><p><a href="http://h26-107.inf105.org">Henrik Werner Sjøvold</a></p>
+    <li><p><a href="http://h26-139.inf105.org">INF105 - Marens kjøleskap</a></p>    </ul>
+  </body>
+</html>
