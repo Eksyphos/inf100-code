@@ -7,7 +7,7 @@ print("x2 = ")
 x2 = int(input())
 print("y2 = ")
 y2 = int(input())
-
+#endringstest
 distx =(x1-x2)
 disty =(y1-y2)
 
