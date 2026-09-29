@@ -43,48 +43,48 @@ def riemann_sum(f,x_lo,x_hi,n):
 #----------------------------------------------#
 
 
-# def almost_equals(a, b):
-#     return abs(a - b) < 0.0000001
+def almost_equals(a, b):
+    return abs(a - b) < 0.0000001
 
-# def test_g():
-#     print('Tester g... ', end='')
-#     # Første test
-#     x = 8.0
-#     actual = g(x)
-#     expected = 2.0
-#     assert almost_equals(expected, actual)
+def test_g():
+    print('Tester g... ', end='')
+    # Første test
+    x = 8.0
+    actual = g(x)
+    expected = 2.0
+    assert almost_equals(expected, actual)
 
-#     # Flere tester
-#     assert almost_equals(4.0, g(4.0))
-#     assert almost_equals(10.0, g(0.0))
-#     print('OK')
+    # Flere tester
+    assert almost_equals(4.0, g(4.0))
+    assert almost_equals(10.0, g(0.0))
+    print('OK')
 
-# def test_approx_area_under_g():
-#     print('Tester approx_area_under_g... ', end='')
-#     # Første test
-#     x_lo = 4
-#     x_hi = 5
-#     actual = approx_area_under_g(x_lo, x_hi) 
-#     expected = 4.0  # skal gi oss kun g(4), som altså er 4.0
-#     assert almost_equals(expected, actual)
+def test_approx_area_under_g():
+    print('Tester approx_area_under_g... ', end='')
+    # Første test
+    x_lo = 4
+    x_hi = 5
+    actual = approx_area_under_g(x_lo, x_hi) 
+    expected = 4.0  # skal gi oss kun g(4), som altså er 4.0
+    assert almost_equals(expected, actual)
 
-#     # Flere tester
-#     assert almost_equals(3.125, approx_area_under_g(5, 6)) # g(5)
-#     assert almost_equals(7.125, approx_area_under_g(4, 6)) # g(4)+g(5)
-#     assert almost_equals(23.75, approx_area_under_g(1, 5)) # g(1)+g(2)+g(3)+g(4)
-#     print('OK')
+    # Flere tester
+    assert almost_equals(3.125, approx_area_under_g(5, 6)) # g(5)
+    assert almost_equals(7.125, approx_area_under_g(4, 6)) # g(4)+g(5)
+    assert almost_equals(23.75, approx_area_under_g(1, 5)) # g(1)+g(2)+g(3)+g(4)
+    print('OK')
 
-# def test_riemann_sum_g():
-#     print('Tester riemann_sum_g... ', end='')
-#     assert almost_equals(7.125, riemann_sum_g(4, 6, 2))
-#     assert almost_equals(6.71875, riemann_sum_g(4, 6, 4))
-#     assert almost_equals(6.3348335, riemann_sum_g(4, 6, 1000))
+def test_riemann_sum_g():
+    print('Tester riemann_sum_g... ', end='')
+    assert almost_equals(7.125, riemann_sum_g(4, 6, 2))
+    assert almost_equals(6.71875, riemann_sum_g(4, 6, 4))
+    assert almost_equals(6.3348335, riemann_sum_g(4, 6, 1000))
 
-#     assert almost_equals(23.75, riemann_sum_g(1, 5, 4))
-#     assert almost_equals(22.4375, riemann_sum_g(1, 5, 8))
-#     assert almost_equals(21.166676666, riemann_sum_g(1, 5, 1_000_000))
-#     print('OK')
-
+    assert almost_equals(23.75, riemann_sum_g(1, 5, 4))
+    assert almost_equals(22.4375, riemann_sum_g(1, 5, 8))
+    assert almost_equals(21.166676666, riemann_sum_g(1, 5, 1_000_000))
+    print('OK')
+test_riemann_sum_g()
 
 
 # def test_riemann_sum_using_g():
