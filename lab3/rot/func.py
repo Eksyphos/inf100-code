@@ -69,3 +69,4 @@ def Indexlist_text():
     Path("C:\\users\\Bjarn\\.ssh\\ny_index.txt").write_text(index, encoding="utf-8")
 
 Indexlist_text()
+Path().re
