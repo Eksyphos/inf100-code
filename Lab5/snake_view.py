@@ -1,6 +1,7 @@
 
 
 def draw_board_row(canvas,x1,y1,x2,y2,row,rownum,info_mode):
+    '''draws a single row of the board'''
     collumns = len(row)
     length = abs(x1-x2)
     step = length/collumns
@@ -15,6 +16,7 @@ def draw_board_row(canvas,x1,y1,x2,y2,row,rownum,info_mode):
             canvas.create_text(x1+step*(i+0.5),(y1+y2)/2, text=f'{i},{rownum}\n {row[i]}', font="arial 10")
 
 def get_colors(val):
+    '''selects the color of the square based on its value'''
     if val==0:
         clr='lightgray'
     elif val>0:
@@ -24,6 +26,7 @@ def get_colors(val):
     return clr
 
 def draw_board(canvas,x1,y1,x2,y2,board,info_mode):
+    '''draws the game board and fills in the correct colors'''
     height = abs(y1-y2)
     rows = len(board)
     Hstep = height/rows
@@ -33,16 +36,16 @@ def draw_board(canvas,x1,y1,x2,y2,board,info_mode):
         draw_board_row(canvas,x1,ys,x2,ye,board[i],i,info_mode)
 
 
-if __name__ == '__main__':
-    from uib_inf100_graphics.simple import canvas, display
+# if __name__ == '__main__':
+#     from uib_inf100_graphics.simple import canvas, display
 
-    test_board = [
-        [1, 2, 3, 0, 5, 4,-1,-1, 1, 2, 3],
-        [0, 4, 0, 7, 0, 3,-1, 0, 0, 4, 0],
-        [0, 5, 0, 8, 1, 2,-1,-1, 0, 5, 0],
-        [0, 6, 0, 9, 0, 0, 0,-1, 0, 6, 0],
-        [0, 7, 0,10,11,12,-1,-1, 0, 7, 0],
-    ]
+#     test_board = [
+#         [1, 2, 3, 0, 5, 4,-1,-1, 1, 2, 3],
+#         [0, 4, 0, 7, 0, 3,-1, 0, 0, 4, 0],
+#         [0, 5, 0, 8, 1, 2,-1,-1, 0, 5, 0],
+#         [0, 6, 0, 9, 0, 0, 0,-1, 0, 6, 0],
+#         [0, 7, 0,10,11,12,-1,-1, 0, 7, 0],
+#     ]
 
-    draw_board(canvas, 25, 80, 375, 320, test_board, True)
-    display(canvas)
+#     draw_board(canvas, 25, 80, 375, 320, test_board, True)
+#     display(canvas)

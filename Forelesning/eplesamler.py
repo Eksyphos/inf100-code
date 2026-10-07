@@ -35,7 +35,6 @@ def key_released(app,event):
         app.pressed_keys.remove(event.key)
 
 def timer_fired(app):
-    new_apple(app)
     if 'Left' in app.pressed_keys:
         if app.player['x']>0+app.player['radius']:
             app.player['x'] -=10
@@ -45,14 +44,17 @@ def timer_fired(app):
     for i in range(len(app.apple)):
         app.apple[i]['y']+=5*(1+app.apple[i]['speed']/10)
     nyliste = []
+    counter = -1
     for eple in app.apple:
+        counter +=1
         if caught_apple(app,eple):
             continue
-        elif app.height - app.apple[i]['y'] <eple['radius']:
+        elif app.height - app.apple[counter]['y'] <eple['radius']:
             app.apples_failed += 1
         else:
             nyliste.append(eple)
     app.apple=nyliste
+    new_apple(app)
 
 def redraw_all(app, canvas):
     #face
@@ -62,7 +64,7 @@ def redraw_all(app, canvas):
         draw_apple(canvas, apple)
     canvas.create_text(
         app.width/2, 15, 
-        text=f'caught apples = {app.apples_success} \nmissed apples = {app.apples_failed}\nexisting apples = {len(app.apple)}', 
+        text=f'caught apples = {app.apples_success} missed apples = {app.apples_failed} existing apples = {len(app.apple)}', 
         font="arial 10"
         )
 

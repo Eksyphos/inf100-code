@@ -19,11 +19,24 @@ def app_started(app):
     app.state = 'menu'
     app.pressed_keys = []
     app.last_move = 'east'
+    ##### SETTINGS #######
+    app.settings = {
+        'Game speed':2,
+        'Board Size':1,
+        'Game Mode':0,
+    }
+    ####### 
+    app.pages = {
+        'menu' : ['Start Game', 'Settings', 'How To Play', 'Leaderboard',],
+        'Settings' : ['Game speed', 'Board Size', 'Game Mode', 'Keybinds', 'Reset Settings'],
+        'How To Play' : [],
+        'Leaderboard' : ['winnerlist',]
+        }
     app.buttonpos = {
-        'menu':[
-            [(87,113),(117,143),(147,173),(177,203),(207,233)],
-            ['Start Game', 'Settings', 'How To Play', 'Leaderboard','test']
-        ]
+        'menu' : [(87,113),(117,143),(147,173),(177,203),(207,233)],
+        'Settings' : [(87,113),(117,143),(147,173),(177,203),(207,233)],
+        'How To Play' : [],
+        'Leaderboard' : [],
         }
 
 def timer_fired(app):
@@ -35,12 +48,13 @@ def timer_fired(app):
 
 def key_pressed(app, event):
     '''updates key presses'''
+    if event.key == 'Escape':
+        app.state = 'menu'
     if event.key == 'i':
         app.info_mode = not app.info_mode
     if app.state == 'gameover':
         if event.key == 'Space':
-            app.state = 'menu'
-            reset_game()# lag en reset funksjon
+            reset_game(app)
     if app.state == 'Start Game':
             
         if event.key == 'Up' and app.last_move != 'south':
@@ -55,20 +69,24 @@ def key_pressed(app, event):
 def mouse_pressed(app, event):
     mouse_x = event.x
     mouse_y = event.y
-    if app.state == 'menu':
-        x_low = app.width/2-app.height/16*2
-        x_high = app.width/2+app.height/16*2
-        if mouse_x>x_low and mouse_x<x_high:
-            click_button(app,mouse_y)
+    #if app.state == 'menu':
+    x_low = app.width/2-app.height/16*2
+    x_high = app.width/2+app.height/16*2
+    if mouse_x>x_low and mouse_x<x_high:
+        click_button(app,mouse_y,app.state)
+    #elif app.state == 'Settings':
             
-
-
-def click_button(app,pos):
-    
-    for i in range(len(app.buttonpos['menu'][0])):
-        start,end = app.buttonpos['menu'][0][i]
-        if pos in range(start,end):
-            app.state = app.buttonpos['menu'][1][i]
+def click_button(app,pos,page):
+    if page == 'menu':
+        for i in range(len(app.buttonpos[page])):
+            start,end = app.buttonpos[page][i]
+            if pos in range(start,end):
+                app.state = app.pages[page][i]
+    if page == 'Settings':
+        for i in range(len(app.buttonpos[page])):
+            start,end = app.buttonpos[page][i]
+            if pos in range(start,end):
+                app.settings[app.pages['Settings'][i]] = (app.settings[app.pages['Settings'][i]]+1)%3
         
 
 
@@ -76,8 +94,13 @@ def click_button(app,pos):
 
 def redraw_all(app, canvas):
     '''draws all visual elements shown in app depending on game state and other conditions'''
-    if app.state == 'menu':
-        draw_menu(canvas,app.buttonpos['menu'][1],app.width,app.height)
+    if app.state != 'Start Game':
+        page = app.state
+        if page == 'Settings':
+            settinglist = app.settings
+        else:
+            settinglist = ''
+        draw_menu(canvas,app.pages[page],app.width,app.height,settinglist)
     elif app.state == 'Start Game':
         draw_board(canvas,25,25,app.width-125,app.height-25,app.board,app.info_mode)
         if app.info_mode:
@@ -158,10 +181,27 @@ def head_move(app):
     #app.head_pos = x%len(app.board[0]),y%len(app.board)
     app.head_pos = x,y
 
+def reset_game(app):
+    '''setter boardstate tilbake til default å går til meny'''
+    app.direction = 'east'
+    app.board = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 2, 3, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+    app.snake_size = 3
+    app.head_pos = (4, 3)
+    app.state = 'menu'
+    app.last_move = 'east'
+
 ############################### RUN THE APP ########################################
 
 if __name__ == '__main__':
     from uib_inf100_graphics.event_app import run_app
     from snake_view import draw_board
-    from draw_menu import draw_menu, draw_settings
+    from draw_menu import draw_menu
     run_app(width=500, height=400, title='Snake')
