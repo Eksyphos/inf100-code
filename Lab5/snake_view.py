@@ -35,6 +35,8 @@ def draw_board(canvas,x1,y1,x2,y2,board,info_mode):
         ye = y1+((i+1)*Hstep)
         draw_board_row(canvas,x1,ys,x2,ye,board[i],i,info_mode)
 
+def draw_multiple_boards(canvas,):
+    #make a function that creates atleast 2 boards to play in at the same time
 
 # if __name__ == '__main__':
 #     from uib_inf100_graphics.simple import canvas, display

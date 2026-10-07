@@ -33,8 +33,8 @@ def app_started(app):
         'Leaderboard' : ['winnerlist',]
         }
     app.buttonpos = {
-        'menu' : [(87,113),(117,143),(147,173),(177,203),(207,233)],
-        'Settings' : [(87,113),(117,143),(147,173),(177,203),(207,233)],
+        'menu' : [],
+        'Settings' : [],
         'How To Play' : [],
         'Leaderboard' : [],
         }
