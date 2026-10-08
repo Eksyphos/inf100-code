@@ -27,7 +27,6 @@ def draw_menu(canvas, liste,width,height,settings=''):
             mainmenu[button], 'white')) #button name and color
         
         buttonpositions.append(pos)
-    return buttonpositions
 
 
 

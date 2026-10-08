@@ -37,17 +37,4 @@ def draw_board(canvas,x1,y1,x2,y2,board,info_mode):
 
 def draw_multiple_boards(canvas,):
     #make a function that creates atleast 2 boards to play in at the same time
-
-# if __name__ == '__main__':
-#     from uib_inf100_graphics.simple import canvas, display
-
-#     test_board = [
-#         [1, 2, 3, 0, 5, 4,-1,-1, 1, 2, 3],
-#         [0, 4, 0, 7, 0, 3,-1, 0, 0, 4, 0],
-#         [0, 5, 0, 8, 1, 2,-1,-1, 0, 5, 0],
-#         [0, 6, 0, 9, 0, 0, 0,-1, 0, 6, 0],
-#         [0, 7, 0,10,11,12,-1,-1, 0, 7, 0],
-#     ]
-
-#     draw_board(canvas, 25, 80, 375, 320, test_board, True)
-#     display(canvas)
+    a = 0
