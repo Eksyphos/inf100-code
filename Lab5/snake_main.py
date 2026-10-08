@@ -33,8 +33,8 @@ def app_started(app):
         'Leaderboard' : ['winnerlist',]
         }
     app.buttonpos = {
-        'menu' : [],
-        'Settings' : [],
+        'menu' : [(87,113),(117,143),(147,173),(177,203)],
+        'Settings' : [(87,113),(117,143),(147,173),(177,203),(207,233)],
         'How To Play' : [],
         'Leaderboard' : [],
         }
@@ -95,12 +95,7 @@ def click_button(app,pos,page):
 def redraw_all(app, canvas):
     '''draws all visual elements shown in app depending on game state and other conditions'''
     if app.state != 'Start Game':
-        page = app.state
-        if page == 'Settings':
-            settinglist = app.settings
-        else:
-            settinglist = ''
-        draw_menu(canvas,app.pages[page],app.width,app.height,settinglist)
+        draw_menu(canvas,app.pages[app.state],app.width,app.height,app.settings)
     elif app.state == 'Start Game':
         draw_board(canvas,25,25,app.width-125,app.height-25,app.board,app.info_mode)
         if app.info_mode:

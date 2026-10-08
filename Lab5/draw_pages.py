@@ -5,7 +5,6 @@ def draw_main_menu(canvas,width,height,buttons,info_mode):
     button_size= height/16
     startY = height/4
     canvas.create_rectangle(0,0,width,height, fill='orange')
-    position_data=[]
     for i in range(len(buttons)):
         new_position = draw_button(
             canvas, #canvas
@@ -13,24 +12,38 @@ def draw_main_menu(canvas,width,height,buttons,info_mode):
             button_size, #size
             buttons[i], 'white', #button name and color
             info_mode,)
-        position_data.append(new_position)
-    return position_data
 
 def draw_settings_page(canvas,width,height,buttons,settings,info_mode):
     '''draws the settings page of the game, returns position data for buttons on settings page'''
     button_size= height/16
     startY = height/4
     canvas.create_rectangle(0,0,width,height, fill='orange')
-    position_data=[]
     for i in range(len(buttons)):
         new_position = draw_button(
             canvas, #canvas
             width/2, startY+(button_size+5)*i, #position X and Y
             button_size, #size
             buttons[i], 'white', #button name and color
-            info_mode, settings) #whether we are in info mode or not and current game settings
-        position_data.append(new_position)
-    return position_data
+            info_mode, settings[buttons[i]]) #whether we are in info mode or not and current game settings
+
+def draw_h2p(canvas,width,height,buttons,settings,info_mode):
+    '''draws the how to play page, showing current keybinds and
+    rules, with a tiny tutorial'''
+    ######## BACKGROUND #########
+    canvas.create_rectangle(0,0,width,height, fill='orange') 
+    ####### TITLE #######
+    canvas.create_text(width/2,height*0.05,text='SNAKEGAME BASICS',font='Arial 30')
+    ######## HOME BUTTON #######
+    canvas.create_rectangle(width*0.05,height*0.15,width*0.15,height*0.25,fill='green',outline='black')
+    canvas.create_text(width*0.10,height*0.20,text='HOME')
+    ######### MAIN BODY ##############
+    canvas.create_text(width/2,height*0.6,align='center',text='' \
+    'Placeholder text,Placeholder text,Placeholder text\n' \
+    'Placeholder textPlaceholder text\n' \
+    'Placeholder text\n' \
+    'Placeholder textPlaceholder textPlaceholder textPlaceholder text\n' \
+    'Placeholder text\n' \
+    'Placeholder textPlaceholder text\n')
 
 #################### HELPING FUNCTIONS ##########################
 
