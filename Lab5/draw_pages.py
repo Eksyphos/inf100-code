@@ -45,6 +45,7 @@ def draw_h2p(canvas,width,height,buttons,settings,info_mode):
     'Placeholder text\n' \
     'Placeholder textPlaceholder text\n')
 
+def draw_esc_menu()
 #################### HELPING FUNCTIONS ##########################
 
 def draw_button(canvas, posX,posY,size,text='NaN',color='white',info_mode=False,settings=''):

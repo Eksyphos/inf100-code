@@ -265,6 +265,10 @@ def point_in_rectangle(x1,y1,x2,y2,xp,yp):
     else:
         return False
 
+def create_buttons(app,):
+    #needs to create x1,y1,x2,y2,label,function
+    '''create the buttons and their position based on current windowsize'''
+
 ##################### START THE GAME #################
 
 if __name__ == '__main__':
