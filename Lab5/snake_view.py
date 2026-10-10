@@ -25,8 +25,9 @@ def get_colors(val):
         clr ='cyan'
     return clr
 
-def draw_board(canvas,x1,y1,x2,y2,board,info_mode):
+def draw_board(canvas,x1,y1,x2,y2,board,info_mode,paused):
     '''draws the game board and fills in the correct colors'''
+    fontsize=int(round(min(x2,y2)*0.1))
     height = abs(y1-y2)
     rows = len(board)
     Hstep = height/rows
@@ -34,6 +35,9 @@ def draw_board(canvas,x1,y1,x2,y2,board,info_mode):
         ys = y1+(i*Hstep)
         ye = y1+((i+1)*Hstep)
         draw_board_row(canvas,x1,ys,x2,ye,board[i],i,info_mode)
+    if paused:
+        canvas.create_rectangle(x2/2-x2*0.3,y2/2-y2*0.075,x2/2+x2*0.3,y2/2+y2*0.075,fill='orange',width=3,outline='black')
+        canvas.create_text(x2/2,y2/2,text='PAUSED',font=f'arial {fontsize}',fill='white')
 
 def draw_multiple_boards(canvas,):
     #make a function that creates atleast 2 boards to play in at the same time

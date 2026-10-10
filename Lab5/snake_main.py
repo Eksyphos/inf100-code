@@ -97,7 +97,7 @@ def redraw_all(app, canvas):
     if app.state != 'Start Game':
         draw_menu(canvas,app.pages[app.state],app.width,app.height,app.settings)
     elif app.state == 'Start Game':
-        draw_board(canvas,25,25,app.width-125,app.height-25,app.board,app.info_mode)
+        draw_board(canvas,25,25,app.width-125,app.height-25,app.board,app.info_mode,app.paused)
         if app.info_mode:
             canvas.create_text(
                 app.width/2, 15, 
