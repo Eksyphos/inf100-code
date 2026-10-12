@@ -1,0 +1,5 @@
+ouroboros mode:
+snake can eat itself, if it does cut off lower half
+
+code: 
+reduce all positive regions by value of eaten pos of self
