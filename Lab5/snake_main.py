@@ -5,6 +5,7 @@ def app_started(app):
     app.info_mode = False
     app.active_game = False
     app.hover = []
+    app.players = 1
     ######## MULTI BOARD SETUP #######
     app.boardsize = (10,10)
     app.boardamount = 2
@@ -13,8 +14,8 @@ def app_started(app):
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -30,6 +31,27 @@ def app_started(app):
     app.snake_size = [3,3]
     app.head_pos = [(4, 3),(4,3)] 
     app.last_move = ['east','east']
+
+    ########## THE SNAKE ############
+    app.snaketracker = [
+        [(2,3),(3,3),(4,3)],
+        [(2,3),(3,3),(4,3)]]
+
+
+    ############## BILDER #################
+    app.image_snake_load = load_image('snake.png') #https://pixabay.com/illustrations/snake-kawaii-vivora-snake-pattern-4477329/
+    ratio = app.width/app.image_snake_load.height
+    app.image_snake = scaled_image(app.image_snake_load,ratio)
+
+    app.snakehead = load_image('snakehead.png')
+    app.snaketail = load_image('snaketail.png')
+    app.snakebodystraight = load_image('snakebodystraight.png')
+    app.snakebodycurve = load_image('snakebodycurve.png')
+    app.snakeimages=[app.snakehead,app.snaketail,app.snakebodystraight,app.snakebodycurve]
+
+
+
+
 
     ##### GAME SETTINGS #######
     app.paused = False
@@ -93,17 +115,18 @@ def app_started(app):
                 [0,0,0,0,'fast',gm_1,False,False],
                 [0,0,0,0,'advanced',gm_1,False,False]
                 ],
-            'keybinds': [[0,0,0,0,'Keybinds',keybinds,False,False]],
+            'keys': [[0,0,0,0,'Keybinds',keybinds,False,False]],
             'settingsreset': [[0,0,0,0,'Reset Settings', reset_settings,False,False]],
             'backtomenu' : [[0,0,0,0,'Back To Menu',gotomenu,False,False]],
 
             },
-        'Tutorial' : [[0,0,0,0,'Menu',gotomenu,False,False]],
+        'How To Play' : [[0,0,0,0,'Menu',gotomenu,False,False]],
         'Leaderboard' : [[0,0,0,0,'Menu',gotomenu,False,False]],
         'Gameboard' : [[0,0,0,0,'Menu',gotomenu,False,False]],
         'ESCmenu' : [[0,0,0,0,'Menu',gotomenu,False,False]],
         'gameboard': [[0,0,0,0,'Menu',gotomenu,False,False]],
-        'Start Game':[[0,0,0,0,'Menu',gotomenu,False,False]]
+        'Start Game':[[0,0,0,0,'Menu',gotomenu,False,False]],
+        'keys':[[0,0,0,0,'Menu',gotomenu,False,False]],
      }
     app.illegalbuttonpress = {
         'north':'south',
@@ -143,29 +166,67 @@ def mouse_moved(app,event):
     hover_button(app,event.x,event.y)
 def size_changed(app):
     buttonpos(app)
+    ratio = app.width/app.image_snake_load.height
+    app.image_snake = scaled_image(app.image_snake_load,ratio)
 
 ############ DRAW THE GAME WINDOW ##############
 
 def redraw_all(app, canvas):
     '''draws all visual elements shown in app depending on game state and other conditions'''
+    
+
     if app.state == 'menu':
-        draw_main_menu(canvas,app.width,app.height,app.buttons[app.state],app.state,app.info_mode)
+        draw_main_menu(canvas,app.width,app.height,app.buttons[app.state],app.image_snake,app.state,app.info_mode)
     elif app.state == 'Settings':
-        draw_settings(canvas,app.width,app.height,app.buttons[app.state],app.state,app.info_mode)
+        draw_settings(canvas,app.width,app.height,app.buttons[app.state],app.image_snake,app.state,app.info_mode)
     elif app.state =='How To Play':
-        draw_h2p(canvas,app.width,app.height,app.buttons[app.state],app.state,app.info_mode)
+        draw_h2p(canvas,app.width,app.height,app.buttons[app.state],app.image_snake,app.state,app.info_mode)
     elif app.state == 'gameover':
         canvas.create_text(app.width/2,app.height/2, text="GAME OVER", font='arial 50')
         canvas.create_text(app.width/2,app.height/1.5, text="Press <SPACEBAR> to return to menu", font='arial 20')
-    
+    elif app.state == 'keys':
+        draw_keys(canvas,app.width,app.height,app.buttons[app.state],app.image_snake,app.state,app.info_mode)
     elif app.state == 'Start Game':
-        draw_board(canvas,app.width*0.05,app.height*0.05,app.width*0.8,app.height*0.95,app.board[0],app.info_mode,app.paused)
-        if app.info_mode:
-            canvas.create_text(
-                app.width/2, 15, 
-                text=f'app.head_pos={app.head_pos[0]} app.snake_size={app.snake_size} app.direction = \'{app.direction}\'', 
-                font="arial 10")
+        for i in range(app.players):
+            draw_board(canvas,app.width*0.05,app.height*0.05,app.width*0.8,app.height*0.95,app.board[0],app.info_mode,app.paused,app.snaketracker[0])
+            if app.info_mode:
+                canvas.create_text(
+                    app.width/2, 15, 
+                    text=f'app.head_pos={app.head_pos[0]} app.snake_size={app.snake_size} app.direction = \'{app.direction}\'', 
+                    font="arial 10")
+        #draw_snake(app,canvas)
+    ########### DRAW SNAKE ############
+    # if app.state == 'Start Game':
+    #     draw_snake(app,canvas)
     
+
+    
+###################### DRAW THE SNAKE ####################
+def draw_snake(app,canvas):
+    boardsize=[app.width*0.05,
+               app.height*0.05,
+               app.width*0.8,
+               app.height*0.95]
+    boardwidth = len(app.board[0])
+    boardheight = len(app.board[0][0])
+    squarewidth = (boardsize[2]-boardsize[0])/boardwidth
+    squareheight = (boardsize[3]-boardsize[1])/boardheight
+    for pos in app.snaketracker[0]:
+        x,y = pos
+        # posX=boardsize[0]+squarewidth*x
+        # posY=boardsize[1]+squareheight*y
+        # canvas.create_image(posX,posY,pil_image=app.snakehead)
+
+        x1 = app.width*0.05+squarewidth*x
+        y1 = app.height*0.05+squareheight*y
+        x2 = app.width*0.05+squarewidth*x+1
+        y2 = app.height*0.05+squareheight*y+1
+
+        image_in_box(canvas,x1,y1,x2,y2,pil_image=app.snakehead,fit_mode='stretch')
+
+
+
+
 
 
 ############ GAME FUNCTIONS ###################
@@ -213,12 +274,16 @@ def head_move(app):
         x-=1
     #app.head_pos[0] = x%len(app.board[0]),y%len(app.board)
     app.head_pos[0] = x,y
+    app.snaketracker[0].append(app.head_pos[0])
+    
+    
 
 def board_update(app):
     '''updates the board state 1 step forward in time by reducing all positive values(where the snake has been) by 1, 
     thus keeping track of how long ago the snake was there simulating snake trail'''
     was_apple_eaten = eat_apple(app)
     if not was_apple_eaten:
+        del app.snaketracker[0][0]
         for row in range(len(app.board[0])):
             for col in range(len(app.board[0][0])):
                 if app.board[0][row][col] >0:
@@ -248,19 +313,20 @@ def reset_game(app):
     app.state = 'menu'
 
     ######## MULTI BOARD SETUP #######
-    app.board = makeboards(app.boardsize,app.amount,app.info_mode)
+    app.board = makeboards(app.boardsize,app.boardamount,app.info_mode)
     app.direction = ['east','east']
     app.snake_size = [3,3]
     app.head_pos = [(4, 3),(4,3)] 
     app.last_move = ['east','east']
+    app.snaketracker = [
+            [(2,3),(3,3),(4,3)],
+            [(2,3),(3,3),(4,3)]]
 
 def reset_settings(app):
     '''resets settings to original configuration'''
-    app.settings = {
-        'Game speed':1,
-        'Board Size':1,
-        'Game Mode':0,
-    }
+    boardsizeM(app)
+    gamespeedN(app)
+
 
 #################### HELP FUNCTIONS #####################
 
@@ -278,8 +344,7 @@ def create_buttons(app,):
 def makeboards(boardsize,amount,info_mode):
     newboards = []
     for i in range(amount):
-        newboards.append(makeboard(boardsize,info_mode))
-        newboards[i]
+        newboards.append(makeboard(boardsize,info_mode))    
     return newboards
 
 def makeboard(boardsize,info_mode):
@@ -305,6 +370,7 @@ def makeboard(boardsize,info_mode):
             break
         else:
             safecount +=1
+    return newboard
 
 
 ################## GO TO FUNCTIONS #########################
@@ -350,7 +416,7 @@ def gamespeedF(app):
 def gamespeedC(app):
     '''sets the gamespeed and changes what button is active in its category'''
     category = 'gamespeed'
-    app.timer_delay = 800
+    app.timer_delay = 100
     app.buttons['Settings'][category][0][-1] = False
     app.buttons['Settings'][category][1][-1] = False
     app.buttons['Settings'][category][2][-1] = False
@@ -425,17 +491,20 @@ def buttonpos(app):
 def click_button(app,mouse_x,mouse_y):
     '''checks if clicked position is a button and if so 
     executes that buttons function'''
+    state = app.state
     if app.state == 'Settings':
-        for key in app.buttons[app.state]:
-            for button in app.buttons[app.state][key]:
+        for key in app.buttons[state]:
+            for button in app.buttons[state][key]:
                 x1,y1,x2,y2,text,func,hover,active = button
                 if point_in_rectangle(x1,y1,x2,y2,mouse_x,mouse_y):
                     func(app)
-    else:
-        for button in app.buttons[app.state]:
+    
+    elif state != 'gameover':
+        for button in app.buttons[state]:
             x1,y1,x2,y2,text,func,hover,active = button
             if point_in_rectangle(x1,y1,x2,y2,mouse_x,mouse_y):
                 func(app)
+                break
 
 def hover_button(app,mouse_x,mouse_y):
     '''checks if most recent mouse position is over a button'''
@@ -450,7 +519,7 @@ def hover_button(app,mouse_x,mouse_y):
                 else:
                     app.buttons[app.state][key][counter][6] = False
                 counter +=1
-    else:
+    elif app.state !='gameover':
         counter = 0
         for button in app.buttons[app.state]:
             
@@ -468,5 +537,6 @@ if __name__ == '__main__':
     from uib_inf100_graphics.event_app import run_app
     from random import randrange
     from snake_view import draw_board
-    from make_menus import draw_main_menu, draw_settings,draw_h2p
+    from make_menus import draw_main_menu, draw_settings,draw_h2p,draw_keys
+    from uib_inf100_graphics.helpers import load_image, scaled_image, image_in_box
     run_app(width=500, height=400, title='Snake')
