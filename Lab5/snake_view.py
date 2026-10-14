@@ -14,6 +14,7 @@ def draw_board_row(canvas,x1,y1,x2,y2,row,rownum,info_mode):
         )
         if info_mode:
             canvas.create_text(x1+step*(i+0.5),(y1+y2)/2, text=f'{i},{rownum}\n {row[i]}', font="arial 10")
+            
 
 def get_colors(val):
     '''selects the color of the square based on its value'''
@@ -25,7 +26,7 @@ def get_colors(val):
         clr ='cyan'
     return clr
 
-def draw_board(canvas,x1,y1,x2,y2,board,info_mode,paused):
+def draw_board(canvas,x1,y1,x2,y2,board,info_mode,paused,snaketracker):
     '''draws the game board and fills in the correct colors'''
     fontsize=int(round(min(x2,y2)*0.1))
     height = abs(y1-y2)
@@ -38,6 +39,9 @@ def draw_board(canvas,x1,y1,x2,y2,board,info_mode,paused):
     if paused:
         canvas.create_rectangle(x2/2-x2*0.3,y2/2-y2*0.075,x2/2+x2*0.3,y2/2+y2*0.075,fill='orange',width=3,outline='black')
         canvas.create_text(x2/2,y2/2,text='PAUSED',font=f'arial {fontsize}',fill='white')
+    if info_mode:
+        canvas.create_text(x2/2,y2*1.02,text=f'{snaketracker}')
+    
 
 def draw_multiple_boards(canvas,):
     #make a function that creates atleast 2 boards to play in at the same time

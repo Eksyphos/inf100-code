@@ -1,22 +1,32 @@
 
 #################### MAIN FUNCTIONS ###################
 
-def draw_main_menu(canvas,width,height,buttons,state,info_mode):
+def draw_main_menu(canvas,width,height,buttons,background,state,info_mode):
     canvas.create_rectangle(0,0,width,height, fill='orange')
+    canvas.create_image(width/2,height/2,pil_image=background)
+    
     fontsize = round(width*0.1)
     fontsize = f'arial {fontsize}'
     canvas.create_text(width/2,height*0.2,text='SNAKEGAME',font=fontsize)
     for button in buttons:
         draw_button(canvas,button,info_mode)
 
-def draw_settings(canvas,width,height,buttons,state,info_mode):
+def draw_settings(canvas,width,height,buttons,background,state,info_mode):
     canvas.create_rectangle(0,0,width,height, fill='orange')
+    canvas.create_image(width/2,height/2,pil_image=background)
     for key in buttons:
         for button in buttons[key]:
                 draw_button(canvas,button,info_mode)
 
-def draw_h2p(canvas,width,height,buttons,state,info_mode):
+def draw_h2p(canvas,width,height,buttons,background,state,info_mode):
     canvas.create_rectangle(0,0,width,height, fill='orange')
+    canvas.create_image(width/2,height/2,pil_image=background)
+    for button in buttons:
+        draw_button(canvas,button,info_mode)
+
+def draw_keys(canvas,width,height,buttons,background,state,info_mode):
+    canvas.create_rectangle(0,0,width,height, fill='orange')
+    canvas.create_image(width/2,height/2,pil_image=background)
     for button in buttons:
         draw_button(canvas,button,info_mode)
 

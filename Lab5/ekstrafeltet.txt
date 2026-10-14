@@ -1,0 +1,6 @@
+lagt til knapper som fungerer med musetrykk
+en hovedmeny
+en settings meny der man kan velge:
+	hastighet på slangen
+	størrelse på brettet
+pause knapp "p"
