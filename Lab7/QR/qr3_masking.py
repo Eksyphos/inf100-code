@@ -24,7 +24,7 @@ def get_masked_matrix(matrix,mask_no):
     return new_matrix
 
 def get_refined_matrix(raw_matrix,error_correction_level,qr_layout):
-    
+    a=0
 
 def score_matrix(matrix):
     diff = 0
