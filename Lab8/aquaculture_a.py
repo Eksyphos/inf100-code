@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 def count_facilities_by_species(path):
-    content = Path(path).read_text()
+    content = Path(path).read_text(encoding='ISO-8859-1')
     data = content.splitlines()
 
     fishdict = {}
@@ -13,11 +13,6 @@ def count_facilities_by_species(path):
             fishdict.update({line[12]:1})
     for key in sorted(fishdict):
         print(f'{key}: {fishdict[key]}')
-
-
-
-
-
 
 if __name__ == '__main__':
     count_facilities_by_species('Akvakulturregisteret.csv')
